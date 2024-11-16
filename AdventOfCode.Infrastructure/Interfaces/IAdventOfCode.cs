@@ -10,4 +10,5 @@ public interface IAdventOfCode
     public ISolution CreateInstanceOfSolution(string arg);
     public void Solve(ISolution solution);
     public void PrintSeparetor(int length);
+    public void PrintRepo();
 }

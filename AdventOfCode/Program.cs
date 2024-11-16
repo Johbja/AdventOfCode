@@ -10,20 +10,23 @@ public class Program
 
     static void Main(string[] args)
     {
-        ConstructSolutionRepository();
+        //ConstructSolutionRepository();
 
         try
         {
-            if (int.TryParse(args[0], out int year))
-            {
-                var currentyear = CreateInstanceOfYear(year);
-                var currentDay = currentyear.CreateInstanceOfSolution(args[1]);
-                currentyear.Solve(currentDay);
-            }
-            else
-            {
-                Console.WriteLine("Could not parse input argument");
-            }
+            var menu = new MenuService();
+            menu.Show();
+
+            //if (int.TryParse(args[0], out int year))
+            //{
+            //    var currentyear = CreateInstanceOfYear(year);
+            //    var currentDay = currentyear.CreateInstanceOfSolution(args[1]);
+            //    currentyear.Solve(currentDay);
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Could not parse input argument");
+            //}
         }
         catch (Exception ex)
         {

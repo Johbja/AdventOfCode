@@ -26,19 +26,14 @@ public class AdventOfCode2023 : IAdventOfCode
             .ToDictionary(type => int.Parse(type.Name.Where(x => char.IsDigit(x)).Aggregate("", (a, b) => a + b.ToString())), type => type);
     }
 
-    public ISolution CreateInstanceOfSolution(string arg)
+    public ISolution? CreateInstanceOfSolution(string arg)
     {
-        if(int.TryParse(arg, out int day))
+        if (int.TryParse(arg, out int day) && _solutionRepository.TryGetValue(day, out var solution))
         {
-            if (Activator.CreateInstance(_solutionRepository[day], new LoadInputService()) is not ISolution instance)
-                throw new ArgumentNullException(nameof(instance), $"Instance of day {day} could not be created");
+            return (ISolution)Activator.CreateInstance(_solutionRepository[day], new LoadInputService());
+        }
 
-            return instance;
-        }
-        else
-        {
-            throw new ArgumentException(nameof(arg), "string could not be parsed as int");
-        }
+        return null;
     }
 
     public void Solve(ISolution solution)
@@ -63,5 +58,17 @@ public class AdventOfCode2023 : IAdventOfCode
     public void PrintSeparetor(int length)
     {
         Console.WriteLine(new string('-', length));
+    }
+
+    public void PrintRepo()
+    {
+        foreach (var pair in _solutionRepository)
+        {
+            var dayinfo = pair.Value.GetCustomAttribute<DayInfo>();
+            if (dayinfo is not null)
+            {
+                Console.WriteLine($"{dayinfo.Day}: {dayinfo.SolutionName}");
+            }
+        }
     }
 }
