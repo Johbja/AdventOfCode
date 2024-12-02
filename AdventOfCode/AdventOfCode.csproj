@@ -10,8 +10,6 @@
   <ItemGroup>
     <Folder Include="Years\2022\Days\" />
     <Folder Include="Years\2022\Input\" />
-    <Folder Include="Years\2024\Days\" />
-    <Folder Include="Years\2024\Input\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,6 +42,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Years\2023\Input\Day14.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Years\2024\Input\Day03.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Years\2024\Input\Day02.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Years\2024\Input\Day01.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
