@@ -33,7 +33,6 @@ public class Day03(LoadInputService inputService) : ISolution
         Console.WriteLine(sum);
     }
 
-
     private int FindInstruction(string input, string pattern = @"mul\((?:\d{1,3}\,\d{1,3})\)")
         => Regex.Matches(input, pattern)
                 .Select(match =>
