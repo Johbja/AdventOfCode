@@ -2,6 +2,8 @@
 using AdventOfCode.Infrastructure.Interfaces;
 using AdventOfCode.Infrastructure.Services;
 using AdventOfCode.Infrastructure.Models._2024.Day05;
+using System;
+using System.Reflection;
 
 namespace AdventOfCode.Years._2024.Days;
 
@@ -86,17 +88,22 @@ public class Day05 : ISolution
 
                 if (_rules.TryGetValue(currentPage, out var pageRules))
                 {
-                    int index = i - 1;
-                    int nextPage = updatesToSort[update][index];
-
-                    while (index > 0 && pageRules.Contains(nextPage))
+                    int lastSawpIndex = i;
+                    bool sawpped = false;
+                    for(int j = 0; j < i; j++)
                     {
-                        updatesToSort[update][index] = currentPage;
-                        updatesToSort[update][index + 1] = nextPage;
+                        if (pageRules.Contains(updatesToSort[update][j]))
+                        {
+                            int sawpTarget = updatesToSort[update][j];
 
-                        index--;
-                        nextPage = updatesToSort[update][index];
+                            updatesToSort[update][j] = currentPage;
+                            updatesToSort[update][lastSawpIndex] = sawpTarget;
+                            lastSawpIndex = j;
+                            sawpped = true;
+                        }
                     }
+                    if (sawpped)
+                        i++;
                 }
             }
         }
@@ -104,14 +111,5 @@ public class Day05 : ISolution
         var result = updatesToSort.Select(x => x[x.Length / 2]).Sum();
 
         Console.WriteLine(result);
-
-        //var result = updatesToSort.Select(update => update
-        //        .Select(page => (value: page, weight: _rules.TryGetValue(page, out var pageRules) ? pageRules.Count() : 0))
-        //        .OrderByDescending(page => page.weight)
-        //        .ToArray())
-        //        .Select(update => update[update.Length/2])
-        //        .Sum(x => x.value);
-
-        //Console.WriteLine(result);
     }
 }
