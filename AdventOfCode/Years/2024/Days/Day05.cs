@@ -12,10 +12,10 @@ public class Day05 : ISolution
 {
     private readonly string _input;
 
-    private Dictionary<int, IEnumerable<int>> _rules;
-    private List<int[]> _updates;
+    private readonly Dictionary<int, IEnumerable<int>> _rules;
+    private readonly List<int[]> _updates;
 
-    private Dictionary<Validity, List<int[]>> _sortedUpdates = new()
+    private readonly Dictionary<Validity, List<int[]>> _sortedUpdates = new()
     {
         { Validity.Valid, new() },
         { Validity.NotValid, new() },
