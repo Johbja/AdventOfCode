@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Models\2022\" />
-    <Folder Include="Models\2024\" />
   </ItemGroup>
 
 </Project>
